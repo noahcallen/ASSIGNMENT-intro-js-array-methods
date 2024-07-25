@@ -71,15 +71,15 @@ const buttonFilter = (event) => {
     </thead>
     <tbody>
     `;
-  //localeCompare: compares where it is before or after; This ex is seeing if a or b is first returning 0 or 1
-  productList().sort((a, b) => a.type.localeCompare(b.type))
-  .forEach(item => {
-    table += tableRow(item);
-  })
-  table += `</tbody></table>`
+    productList().sort((a, b) => a.type.localeCompare(b.type))//localeCompare: compares where it is before or after; This ex is seeing if a or b is first returning 0 or 1
+    productList().forEach(item => {
+      table += tableRow(item);
+    });
 
-  renderToDom('#cards', table);
-}
+    table += `</tbody></table>`
+
+    renderToDom('#cards', table);
+  }
   
 }
 
@@ -88,7 +88,6 @@ const buttonFilter = (event) => {
 const cartTotal = () => {
   const cart = referenceList.filter(item => item.inCart);
   const total = cart.reduce((a,b) => a + b.price, 0); //0 is the intitual value, this actually adds the total of the cart (doesnt reset)
-  const freeItems = cart.some(item => item.price <= 0)
   document.querySelector("#cartTotal").innerHTML = total.toFixed(2);
 
   if (freeItems) {

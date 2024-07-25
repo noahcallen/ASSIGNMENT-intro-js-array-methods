@@ -88,7 +88,6 @@ const buttonFilter = (event) => {
 const cartTotal = () => {
   const cart = referenceList.filter(item => item.inCart);
   const total = cart.reduce((a,b) => a + b.price, 0); //0 is the intitual value, this actually adds the total of the cart (doesnt reset)
-  const freeItems = cart.some(item => item.price <= 0)
   document.querySelector("#cartTotal").innerHTML = total.toFixed(2);
 
   if (freeItems) {
